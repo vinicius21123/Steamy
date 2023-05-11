@@ -1,0 +1,27 @@
+.modalBody{
+    background-color: #66c0f4;
+    color: black;
+    text-align: center;
+}
+.modal-body button,
+.modal-footer button,
+.btn,
+.btn:hover
+{
+    background-color: #1b2838;
+    border: none;
+    color: #c7d5e0;
+}
+.modal-header{
+    border: none;
+}
+.modal-footer{
+    border: none;
+}
+.modal-footer{
+    border-color: #1b2838;
+}
+
+.btn img{
+    height: 28px;
+}
