@@ -1,11 +1,21 @@
 import React ,{useEffect,useState}from "react";
 import '../model.css';
+import { useSelector } from "react-redux";
+import { loginSlice, selectUser } from "../../userSlice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 export const Cart = () => {
+    let dispatch = useDispatch();
     let cart_image = 'https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png';
     let [items,setItems] = useState([]);
     let [total,setTotal] = useState(0);
     const [isClicked, setIsCliked] = useState(false);
-    let cartId = 2;
+    let g = useSelector(selectUser);
+    let cartId = g?g.data.cart_id:1;
+    if(cartId === undefined){
+        cartId = 1;
+    }
+ 
     const deleteHandler=async(id)=>{
         try {
             let [appClicked] = items.filter(app=>app.game_id === id);
@@ -47,6 +57,8 @@ export const Cart = () => {
             console.error(err.message);
         }
     }
+
+    
     const countTotal = ()=>{
         let r = 0;
         items.forEach(item=>{
@@ -58,7 +70,9 @@ export const Cart = () => {
         return r;
     }
     useEffect(()=>{
+      
         getCartItems();
+        
     },[isClicked]);
 
     return (

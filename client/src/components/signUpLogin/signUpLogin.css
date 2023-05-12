@@ -63,3 +63,46 @@ form {
       width: 100%;
     }
   }
+
+
+
+
+  .bottom-bar {
+    display: none;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    background: #66c0f4;
+    color: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+  }
+  
+  .bottom-bar__content {
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .bottom-bar__content > * {
+    display: flex;
+    align-items: center;
+  }
+  
+  .bottom-bar__text {
+    padding-right: 10px;
+  }
+  
+  .bottom-bar__close,
+  .bottom-bar__close1
+   {
+    background: none;
+    width: auto;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 2em;
+  }

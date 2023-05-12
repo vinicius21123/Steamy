@@ -1,7 +1,15 @@
 import React,{useState}from "react";
 import './appComponents.css';
+import { useSelector } from "react-redux";
+import { selectUser } from "../../userSlice";
 export const DisplayApp = (props) =>{
     let apps = props.data;
+    let g = useSelector(selectUser);
+    let cartId = g?g.data.cart_id:1;
+    let userId = g?g.data.user_id:1;
+    if(cartId === undefined){
+        cartId = 1;
+    }
     let data = apps.filter(app=>app.price === '$0.00');
     let [appsSearched,setAppsSearched] = useState([])
     let [searching,setSearching] = useState(false)
@@ -10,7 +18,7 @@ export const DisplayApp = (props) =>{
     const addToCart = async (id)=>{
         try {
             let [appClicked] = apps.filter(app=>app.game_id === id);
-            const body = {cart_id:2,game_id:appClicked.game_id,user_id:2}
+            const body = {cart_id:cartId,game_id:appClicked.game_id,user_id:userId}
             let response = fetch(`http://localhost:3000/cart`,{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
@@ -83,6 +91,7 @@ export const DisplayApp = (props) =>{
         }
         
     }
+    
     return(
         <div>
         <div className="checkBox">

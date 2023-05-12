@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { AllApps } from './components/renderAllApps/allApps';
 import {SingleApp} from './components/renderSingleApp/singleApps';
 import { Nav } from './components/nav/nav';
@@ -9,12 +10,15 @@ function App() {
 
   return (
       <div>
+
         <Nav />
-        <Routes>
-            <Route path="/" element={<AllApps/>} /> 
-            <Route path="/:gameId" element={<SingleApp/>} /> 
-            {/* <Route path="/cart/:cart_id" element={} />  */}
-        </Routes>
+        
+          <Routes>
+              <Route path="/" element={<AllApps/>} /> 
+              <Route path="/:gameId" element={<SingleApp/>} /> 
+              {/* <Route path="/cart/:cart_id" element={} />  */}
+          </Routes>
+       
       </div> 
     )
   
