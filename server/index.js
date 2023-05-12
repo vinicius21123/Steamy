@@ -84,7 +84,9 @@ app.put('/cart/delete/:id',async(req,res)=>{
 app.post('/login',(req,res,next)=>{
     
     passport.authenticate("local",(err,user,info)=>{
-        if(err) throw err;
+        if(err){
+            throw err;
+        } 
         if(!user)res.send('No user Exists');
         else{
             req.logIn(user,(err)=>{
@@ -97,31 +99,6 @@ app.post('/login',(req,res,next)=>{
         
     })(req,res,next);
 
-    
-
-    // try{
-    //     // const newApp = await pool.query("SELECT * FROM users WHERE password=$1 AND email_address= $2;",[req.body.psw,req.body.email]);
-    //     // console.log(newApp.rows)
-    //     // if(newApp.rows[0] === undefined){
-    //     //     console.log('not correct')
-    //     //     res.status(404).redirect('http://localhost:3001/');
-    //     // }
-    //     // else{
-    //     //     res.redirect('http://localhost:3001/');
-    //     //     res.json(newApp.rows[0]);
-    //     // }
-    //     console.log(req.body);
-    //     const checkUser = await pool.query("SELECT * FROM users WHERE password=$1 AND email_address= $2;",[req.body.password,req.body.email]);
-    //     console.log(checkUser.rows)
-    //     if(checkUser.rows.length !== 0){
-    //        res.send('login found')
-    //     }
-    //     else{
-    //         res.send('Theres no user with that combination of email and password')
-    //     }
-    // }catch(err){
-    //     console.error(err.message);
-    // }
 })
 
 app.post('/register', async(req,res)=>{
@@ -168,7 +145,7 @@ app.get('/logOut', async(req,res)=>{
       
         });
         
- 
+  
     
     }catch(err){
         console.error(err.message);

@@ -9,21 +9,29 @@ module.exports = function (passport) {
             console.log('in passport')
             pool.query("SELECT * FROM users WHERE email_address= $1;",[email],(err,user)=>{
                 
-                if(err) done(err,false);
+                if(err){
+                    done(null,false);
+                }
+                 
                 if(!user) return done(null,false);
-                
+                console.log(user.rows)
+            if(user.rows.length === 0){
+                console.log('haha')
+                done(null,false);
+            }
+            else{
+                bcrypt.compare(password,user.rows[0].password,(erro,result)=>{
 
-            bcrypt.compare(password,user.rows[0].password,(erro,result)=>{
-
-                if(result === true){
-                    
-                    console.log(user.rows[0])
-                    return done(null,user.rows[0])
-                }
-                else{
-                    return done(null,false);
-                }
-            })
+                    if(result === true){
+                        
+                        console.log(user.rows[0])
+                        return done(null,user.rows[0])
+                    } 
+                    else{
+                        return done(null,false);
+                    }
+                })
+            }
         })
             
     }));
