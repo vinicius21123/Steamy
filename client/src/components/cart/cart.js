@@ -89,7 +89,6 @@ export const Cart = () => {
                 
             </div>
             <div className="modal-body">
-            <h1 className="mb-4">Cart id = {cartId}</h1>
              {items.length===0?<h3 className="mt-5 mb-5">There are no items here! Try going to the main page and adding apps to your cart.</h3>:
              items.map(app =>{     
                       

@@ -174,6 +174,14 @@ app.get('/logOut', async(req,res)=>{
         console.error(err.message);
     }
 })
+app.get('/getUser', async(req,res)=>{
+    try{
+        res.send(req.user);
+
+    }catch(err){
+        console.error(err.message);
+    }
+})
 app.listen(3000,()=>{
     console.log('Server has started on port 3000');
 })
